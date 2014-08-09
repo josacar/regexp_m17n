@@ -4,7 +4,7 @@ module RegexpM17N
       def encode(string)
         ec = Encoding::Converter.new(self.encoding, string)
         ec.convert(self)
-      rescue Encoding::ConverterNotFoundError
+      rescue Encoding::ConverterNotFoundError, Java::JavaNioCharset::UnsupportedCharsetException
         self.force_encoding(string)
       end
     end
